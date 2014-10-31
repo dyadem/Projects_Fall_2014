@@ -1,5 +1,6 @@
 /* 
 File: csvfunctions2.h
+from: UVic SENG265 Fall 2014 Niegel Horsepool
 */
 
 struct OneRow {

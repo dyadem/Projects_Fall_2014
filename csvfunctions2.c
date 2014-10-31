@@ -1,6 +1,6 @@
 /* File: csvfunctions2.c
    by Jason Sanche
-   UVic SENG265 Fall 2014 Assignment02 - Neigel Horsepool
+   UVic SENG265 Fall 2014 Assignment02 - Niegel Horsepool
    provides functions to manipulate csv files input via command line:
    ex: load "filename.csv", findrow B "abc" (row containing "abc" in col B), 
    printrow 3, evalsum C (sum column C), evalavg C (average column C), 

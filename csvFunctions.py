@@ -2,7 +2,8 @@
 # Author: Jason Sanche 
 #Written from scratch for UVIC SENG265 Fall 2014 Assignment03
 #Processes CSV file and performs manipulations on the data
-#Python re-write of C code version in Assignment02
+#To run code save this file and a csv file to load (see med.csv)
+#run command in directory: $ python3 <filename>.py
 #Commands Include:
 # load filename.csv, findrow B abc (row containing "abc" in col B), 
 # printrow 3, evalsum C (sum column C), evalavg C (average column C), 

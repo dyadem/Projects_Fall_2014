@@ -114,7 +114,7 @@ class SS:
             print("Specified column out of range\n")
             return
         else:
-            if re.match('[a-zA-A]',col):#col is [a-zA-Z]
+            if re.match('[a-zA-Z]',col):#col is [a-zA-Z]
                 colnum = ord(str.lower(col)) - ord('a')
             else:
                 colnum = int(col)
@@ -140,7 +140,7 @@ class SS:
             print("Specified column out of range\n")
             return
         else:
-            if re.match('[a-zA-A]',col):#col is [a-zA-Z]
+            if re.match('[a-zA-Z]',col):#col is [a-zA-Z]
                 colnum = ord(str.lower(col)) - ord('a')
             else:
                 colnum = int(col)

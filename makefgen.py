@@ -3,7 +3,8 @@
 #python script to generate a makefile for c and C++ programs
 #Usage:
 #       python3 makefgen.py <program folder path>
-#handles #include dependencies recursively, avoiding infinite loops
+#handles #include "file" dependencies recursively, avoiding infinite loops
+#does not handle files outside of specified directory: #include <file>
 
 import sys
 import os.path

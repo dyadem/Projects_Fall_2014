@@ -60,7 +60,7 @@ mkf.write("\n\n")
 mkf.write("PROG: = prog.exe\n\n$(PROG): $(OBJS)\n\t"
 		"$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(PROG)\n")
 
-#rules for .c files and 
+#rules for .c files
 for f in os.listdir():
     if re.match("^[\w*\s*]+.c$",f):
     	fname = f.split(".")

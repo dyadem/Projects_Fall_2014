@@ -41,39 +41,39 @@ def adeps(f):
 		print("Reason: ", reason[1],"\n")
 
 #begin script 
-mkf.write("CC=gcc\n\n")
-mkf.write('SRCS = ')
-for f in os.listdir():
-    if re.match("^[\w*\s*]+.c$|^[\w*\s*]+.cc$"
+mkf.write("CC=gcc\n\n")		
+mkf.write('SRCS = ')		#define source files
+for f in os.listdir():		#for files in program folder
+    if re.match("^[\w*\s*]+.c$|^[\w*\s*]+.cc$"	#find c and c++ files
                 "|^[\w*\s*]+.C$|^[\w*\s*]+.cpp$",f):
-        mkf.write(''+ f +' ')
+        mkf.write(f +' ')	#write list of source files
 
 mkf.write("\n\n")
-mkf.write("OBJS = ")
+mkf.write("OBJS = ")		#define object files
 for f in os.listdir():
-    if re.match("^[\w*\s*]+.c$|^[\w*\s*]+.cc$"
+    if re.match("^[\w*\s*]+.c$|^[\w*\s*]+.cc$"	#find c and c++ files
                 "|^[\w*\s*]+.C$|^[\w*\s*]+.cpp$",f):
         fname = f.split(".")
-        mkf.write(fname[0]+".o ")
+        mkf.write(fname[0]+".o ")	#write file list with .o appended
 mkf.write("\n\n")
 
-mkf.write("PROG: = prog.exe\n\n$(PROG): $(OBJS)\n\t"
+mkf.write("PROG: = prog.exe\n\n$(PROG): $(OBJS)\n\t" #makefile protocols
 		"$(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(PROG)\n")
 
 #rules for .c files
 for f in os.listdir():
-    if re.match("^[\w*\s*]+.c$",f):
+    if re.match("^[\w*\s*]+.c$",f):	#find c source files
     	fname = f.split(".")
-    	rule=("\n"+fname[0]+".o: "+f+" "
+    	rule=("\n"+fname[0]+".o: "+f+" "#rule with additional dependencies
     	+adeps(f)+" \n\t$(CC) $(CPPFLAGS) $(CFLAGS) -c "+f+"\n")
     	mkf.write(rule)
     			
 #rules for .cc .C and .cpp files
 for f in os.listdir():
-    if re.match("^[\w*\s*]+.cc$"
+    if re.match("^[\w*\s*]+.cc$"	#find c++ sounrce files
                 "|^[\w*\s*]+.C$|^[\w*\s*]+.cpp$",f):
     	fname = f.split(".")
-    	rule=("\n"+fname[0]+".o: "+f+" "+adeps(f)+"\n"
+    	rule=("\n"+fname[0]+".o: "+f+" "+adeps(f)+"\n"	#rule with dependencies
     		"\t$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c "+f+"\n")
     	mkf.write(rule)
 

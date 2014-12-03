@@ -16,7 +16,7 @@
 	<h2>Your Target</h2>
 	<h3><p id = "target" ></p></h3>
 	<script>
-		document.getElementById("target").innerHTML = Math.floor((Math.random() * 100) + 1); 
+		document.getElementById("target").innerHTML = Math.floor((Math.random() * 100) + 100); 
 	</script>
 	
 	<h2>Your Counter</h2>

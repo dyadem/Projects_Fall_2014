@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Dice Game</title>
+    
+
+</head>
+
+<body>
+
+<h1>Dice Game</h1>
+
+	<h2>Your Target</h2>
+	<h3><p id = "target" ></p></h3>
+	<script>
+		document.getElementById("target").innerHTML = Math.floor((Math.random() * 100) + 1); 
+	</script>
+	
+	<h2>Your Counter</h2>
+	<h3><p id = "counter" >0</p></h3>
+	
+	
+	
+	<h2>Time Left</h2>
+	
+	<h3><p id="timer">0</p></h3>
+	<script id=timerfunction>
+	var seconds = 10;
+	function secondPassed() {
+		var remainingSeconds = seconds % 60;
+		if (remainingSeconds < 10) {
+			remainingSeconds = "0" + remainingSeconds; 
+		}
+		document.getElementById("timer").innerHTML = "" + remainingSeconds;
+		if (seconds == 0) {
+			clearInterval(countdownTimer);
+			document.getElementById("timer").innerHTML = "Time's up!";
+			document.getElementById("button1").disabled = true;
+		} else {
+			seconds--;
+		}
+		}
+	var countdownTimer = setInterval('secondPassed()', 1000);
+	</script>
+	
+	<button id=button1 type="button" onclick="dieCounter()">Roll some more!</button> 
+	<script>
+	var count = 0;
+	function dieCounter() {
+	var counter = Number(document.getElementById("counter").innerHTML)
+	var target = Number(document.getElementById("target").innerHTML)
+	if(counter > target){ 
+		document.getElementById("button1").disabled = true;
+		document.getElementById("timerfunction").disabled = true;
+		} 
+    else{
+    	 document.getElementById("counter").innerHTML = count += Math.floor((Math.random() * 6) + 1);
+    	}
+    }
+	</script>
+	
+
+</body>
+
+</html>

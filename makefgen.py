@@ -26,12 +26,12 @@ def adeps(f):
 				fname = line.split('"')			#isolate filename
 				if fname[1] not in os.listdir() and fname[1] not in dd:	#if file.h not in directory
 					print ("\n"+f+" contains #include for missing file "+fname[1]+"\n")
-					dd += fname[1]+" "  	#print err message and add file anyway
-				elif fname[1] not in dd:	#if file.h not already listed
-					dd += fname[1]+" "	#add file to list
-				elif fname[1] not in fvisited:	#if file.h not already visited
+					dd += fname[1]+" "  		#print err message and add file anyway
+				elif fname[1] not in dd:		#if file.h not already listed
+					dd += fname[1]+" "		#add file to list
+				elif fname[1] not in fvisited:		#if file.h not already visited
 					fvisited.append(fname[1]+" ")	#add file to list of visited
-					adeps(fname[1])		#recursively visit file.h for its dependencies etc.
+					adeps(fname[1])			#recursive visit file.h for dependencies etc.
 		pstream.close()
 		return dd	#return list of .h files which file f is directly or indirectly dependent on 
 		
@@ -73,7 +73,7 @@ for f in os.listdir():
     if re.match("^[\w*\s*]+.cc$"	#find c++ sounrce files
                 "|^[\w*\s*]+.C$|^[\w*\s*]+.cpp$",f):
     	fname = f.split(".")
-    	rule=("\n"+fname[0]+".o: "+f+" "+adeps(f)+"\n"	#rule with dependencies
+    	rule=("\n"+fname[0]+".o: "+f+" "+adeps(f)+"\n"#rule with dependencies
     		"\t$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c "+f+"\n")
     	mkf.write(rule)
 

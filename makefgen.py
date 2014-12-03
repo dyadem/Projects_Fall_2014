@@ -11,29 +11,29 @@ import os.path
 import os
 import re
 
-folderpath = sys.argv[1]
-os.chdir(folderpath)
-mkf = open('Makefile', 'w')
+folderpath = sys.argv[1]	#command line argument specifies path to program folder
+os.chdir(folderpath)		#change working directory to program folder
+mkf = open('Makefile', 'w')	#create makefile to write to
 
 #function for finding additional dependencies
 def adeps(f):
 	try:
-		pstream = open(f)
-		dd = ""
-		fvisited = [f+" "]
+		pstream = open(f) 	#open file f
+		dd = ""			#list .h files found in dependency on file f
+		fvisited = [f+" "]	#list of all files visited to avoid re-visiting 
 		for line in pstream:
-			if re.match("^#include[\s\t]+\"\w+.h\"",line):
-				fname = line.split('"')
-				if fname[1] not in os.listdir() and fname[1] not in dd:
+			if re.match("^#include[\s\t]+\"\w+.h\"",line): 	#find lines with: #include "file.h" 
+				fname = line.split('"')			#isolate filename
+				if fname[1] not in os.listdir() and fname[1] not in dd:	#if file.h not in directory
 					print ("\n"+f+" contains #include for missing file "+fname[1]+"\n")
-					dd += fname[1]+" "
-				elif fname[1] not in dd:
-					dd += fname[1]+" "
-				elif fname[1] not in fvisited:
-					fvisited.append(fname[1]+" ")
-					adeps(fname[1])
+					dd += fname[1]+" "  	#print err message and add file anyway
+				elif fname[1] not in dd:	#if file.h not already listed
+					dd += fname[1]+" "	#add file to list
+				elif fname[1] not in fvisited:	#if file.h not already visited
+					fvisited.append(fname[1]+" ")	#add file to list of visited
+					adeps(fname[1])		#recursively visit file.h for its dependencies etc.
 		pstream.close()
-		return dd
+		return dd	#return list of .h files which file f is directly or indirectly dependent on 
 		
 	except:
 		print("Error occurred while accessing file",f,"\n")

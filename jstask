@@ -27,6 +27,7 @@
 	<h2>Time Left</h2>
 	
 	<h3><p id="timer">0</p></h3>
+	<h3><p id="result"></p></h3>
 	<script id=timerfunction>
 	var seconds = 10;
 	function secondPassed() {
@@ -36,9 +37,12 @@
 		}
 		document.getElementById("timer").innerHTML = "" + remainingSeconds;
 		if (seconds == 0) {
+			var counter = Number(document.getElementById("counter").innerHTML)
+			var target = Number(document.getElementById("target").innerHTML)
 			clearInterval(countdownTimer);
 			document.getElementById("timer").innerHTML = "Time's up!";
 			document.getElementById("button1").disabled = true;
+			document.getElementById("result").innerHTML = "Game over! You're score is:"+String (target-counter);
 		} else {
 			seconds--;
 		}
@@ -55,7 +59,11 @@
 	if(counter > target){ 
 		document.getElementById("button1").disabled = true;
 		document.getElementById("timerfunction").disabled = true;
+		document.getElementById("result").innerHTML = "You are disqualified!";
 		} 
+	else if(counter === target){
+		document.getElementById("timer").innerHTML = "You won!";
+		}
     else{
     	 document.getElementById("counter").innerHTML = count += Math.floor((Math.random() * 6) + 1);
     	}
